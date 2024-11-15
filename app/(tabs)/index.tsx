@@ -19,7 +19,7 @@ export default function TabOneScreen() {
   }, [])
 
   return (
-    <View>
+    <View >
       <Auth />
       {session && session.user && <Text>{session.user.id}</Text>}
     </View>
