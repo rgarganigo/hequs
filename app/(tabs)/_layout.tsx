@@ -62,9 +62,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="four"
+        name="map"
         options={{
-          title: 'Tab Quatre enculé',
+          title: 'Map',
           tabBarIcon: ({ color }) => <TabBarIcon name="bug" color={color} />,
         }}
       />
