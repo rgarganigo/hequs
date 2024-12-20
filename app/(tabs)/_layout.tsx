@@ -1,77 +1,113 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import React from 'react'
+import { View, Image, Text } from 'react-native'
+import { Tabs, Redirect } from 'expo-router'
+import { icons } from '../../constants';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+interface TabIconProps {
+  icon: any;
   color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  name: string;
+  focused: boolean;
 }
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
   return (
-    <NavigationContainer theme={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
+    <View className="items-center justify-center gap-2">
+      <Image
+        source={icon}
+        resizeMode="contain"
+        tintColor={color}
+        className="w-6 h-6"
+      />
+      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs `} 
+      numberOfLines={1} style={{color: color, width: 50, textAlign: 'center'}}> 
+      {name}
+      </Text>
+    </View>
+  )
+}
+
+const TabsLayout = () => {
+  return (
+    <>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-          tabBarInactiveTintColor: colorScheme === 'dark' ? '#aaa' : '#555',
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: '#FFA001',
+          tabBarInactiveTintColor: '#CDCDE0',
           tabBarStyle: {
-            backgroundColor: colorScheme === 'dark' ? '#000' : '#fff', // Couleur de fond de la barre
-          },
-          headerShown: useClientOnlyValue(false, true),
+            backgroundColor: '#161622',
+            borderTopWidth: 1,
+            borderTopColor: '#232533',
+            height: 85,
+            paddingBottom: 10,
+            paddingTop: 10
+          }
         }}
       >
         <Tabs.Screen
-          name="index"
+          name="home"
           options={{
-            title: 'Tab One',
-            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-            headerRight: () => (
-              <Link href="/modal" asChild>
-                <Pressable>
-                  {({ pressed }) => (
-                    <FontAwesome
-                      name="info-circle"
-                      size={25}
-                      color={Colors[colorScheme ?? 'dark'].text}
-                      style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                    />
-                  )}
-                </Pressable>
-              </Link>
-            ),
+            title: 'Home',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Home"
+                focused={focused}
+              />
+            )
           }}
         />
         <Tabs.Screen
-          name="two"
+          name="screenOne"
           options={{
-            title: 'Tab Deux',
-            tabBarIcon: ({ color }) => <TabBarIcon name="vine" color={color} />,
+            title: 'Cheval',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Cheval"
+                focused={focused}
+              />
+            )
           }}
         />
         <Tabs.Screen
-          name="three"
+          name="screenTwo"
           options={{
-            title: 'Tab Trois',
-            tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
+            title: 'Map',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Map"
+                focused={focused}
+              />
+            )
           }}
         />
         <Tabs.Screen
-          name="four"
+          name="screenThree"
           options={{
-            title: 'Tab Quatre',
-            tabBarIcon: ({ color }) => <TabBarIcon name="bug" color={color} />,
+            title: 'Profile',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.profile}
+                color={color}
+                name="Profile"
+                focused={focused}
+              />
+            )
           }}
         />
       </Tabs>
-    </NavigationContainer>
-  );
+    </>
+  )
 }
+
+export default TabsLayout
