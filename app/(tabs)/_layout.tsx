@@ -1,73 +1,113 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import React from 'react'
+import { View, Image, Text } from 'react-native'
+import { Tabs, Redirect } from 'expo-router'
+import { icons } from '../../constants';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+interface TabIconProps {
+  icon: any;
   color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  name: string;
+  focused: boolean;
 }
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'dark'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
+    <View className="items-center justify-center gap-2">
+      <Image
+        source={icon}
+        resizeMode="contain"
+        tintColor={color}
+        className="w-6 h-6"
       />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Deux',
-          tabBarIcon: ({ color }) => <TabBarIcon name="vine" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="three"
-        options={{
-          title: 'Tab Trois',
-          tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="map"
-        options={{
-          title: 'Map',
-          tabBarIcon: ({ color }) => <TabBarIcon name="bug" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs `} 
+      numberOfLines={1} style={{color: color, width: 50, textAlign: 'center'}}> 
+      {name}
+      </Text>
+    </View>
+  )
 }
+
+const TabsLayout = () => {
+  return (
+    <>
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: '#FFA001',
+          tabBarInactiveTintColor: '#CDCDE0',
+          tabBarStyle: {
+            backgroundColor: '#161622',
+            borderTopWidth: 1,
+            borderTopColor: '#232533',
+            height: 85,
+            paddingBottom: 10,
+            paddingTop: 10
+          }
+        }}
+      >
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: 'Home',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Home"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="screenOne"
+          options={{
+            title: 'Cheval',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Cheval"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="screenTwo"
+          options={{
+            title: 'Map',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Map"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="screenThree"
+          options={{
+            title: 'Profile',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.profile}
+                color={color}
+                name="Profile"
+                focused={focused}
+              />
+            )
+          }}
+        />
+      </Tabs>
+    </>
+  )
+}
+
+export default TabsLayout
