@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
-import { Coordinate, UseMapHookReturn } from './types';
+import { ObstacleMarker, UseMapHookReturn } from './types';
 
 export function useMap(): UseMapHookReturn {
   const [location, setLocation] = useState({
@@ -9,7 +9,7 @@ export function useMap(): UseMapHookReturn {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
-  const [markers, setMarkers] = useState<Coordinate[]>([]);
+  const [markers, setMarkers] = useState<ObstacleMarker[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -28,10 +28,10 @@ export function useMap(): UseMapHookReturn {
     })();
   }, []);
 
-  const handleMapPress = (e: { nativeEvent: { coordinate: Coordinate } }) => {
+  const handleMapPress = (e: { nativeEvent: { coordinate: ObstacleMarker } }) => {
     const { coordinate } = e.nativeEvent;
-    setMarkers([...markers, coordinate]);
-  };
+    setMarkers([...markers, { ...coordinate, name: 'Nouveau', color: 'Inconnu', type: 'Standard' }]); // Exemple avec des valeurs par défaut
+  };  
 
   return {
     location,

@@ -1,33 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { ObstacleFormProps } from '../Map/types'; // Assurez-vous d'importer l'interface correctement
 import { addObstacle } from '../Obstacle/useObstacle';
 
-export function ObstacleForm({ userId }: { userId: number }) {
+export function ObstacleForm({ userId, latitude, longitude, onClose, onSave }: ObstacleFormProps) {
   const [height, setHeight] = useState('');
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
   const [type, setType] = useState('');
 
   const handleSubmit = async () => {
-    const heightValue = 1.5;
-
-    // Validation des champs
-    if (isNaN(heightValue) || heightValue <= 0) {
-      alert("Veuillez entrer une hauteur valide et positive !");
-      return;
-    }
-    if (!name.trim()) {
-      alert("Veuillez entrer un nom pour l'obstacle !");
-      return;
-    }
-    if (!color.trim()) {
-      alert("Veuillez entrer une couleur pour l'obstacle !");
-      return;
-    }
-    if (!type.trim()) {
-      alert("Veuillez entrer un type pour l'obstacle !");
-      return;
-    }
+    const heightValue = parseFloat(height);
 
     const obstacle = {
       height: heightValue,
@@ -35,18 +18,20 @@ export function ObstacleForm({ userId }: { userId: number }) {
       color,
       type,
       id_user: userId,
+      latitude,
+      longitude,
     };
 
-    // Envoi des données à Supabase
     const result = await addObstacle(obstacle);
-    if (result) {
-      alert('Obstacle ajouté avec succès !');
+    if (result.success && result.data && result.data.length > 0) { // Vérifiez que data est défini et contient des éléments
+      onSave(result.data[0]); // Utilisez le premier élément des données retournées
       setHeight('');
       setName('');
       setColor('');
       setType('');
+      onClose(); // Fermez la modal après succès
     } else {
-      alert("Une erreur est survenue lors de l'ajout de l'obstacle.");
+      alert(result.message || 'Une erreur est survenue lors de l\'ajout de l\'obstacle.');
     }
   };
 
@@ -59,7 +44,6 @@ export function ObstacleForm({ userId }: { userId: number }) {
         onChangeText={setName}
         placeholder="Nom"
       />
-
       <Text style={styles.label}>Hauteur :</Text>
       <TextInput
         style={styles.input}
@@ -68,7 +52,6 @@ export function ObstacleForm({ userId }: { userId: number }) {
         placeholder="Hauteur"
         keyboardType="numeric"
       />
-
       <Text style={styles.label}>Couleur :</Text>
       <TextInput
         style={styles.input}
@@ -76,7 +59,6 @@ export function ObstacleForm({ userId }: { userId: number }) {
         onChangeText={setColor}
         placeholder="Couleur"
       />
-
       <Text style={styles.label}>Type :</Text>
       <TextInput
         style={styles.input}
@@ -84,9 +66,11 @@ export function ObstacleForm({ userId }: { userId: number }) {
         onChangeText={setType}
         placeholder="Type"
       />
-
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Ajouter Obstacle</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
+        <Text style={styles.buttonText}>Annuler</Text>
       </TouchableOpacity>
     </View>
   );
@@ -116,6 +100,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#007BFF',
     padding: 15,
     borderRadius: 5,
+    marginBottom: 10,
+  },
+  cancelButton: {
+    backgroundColor: '#FF0000',
   },
   buttonText: {
     color: '#fff',

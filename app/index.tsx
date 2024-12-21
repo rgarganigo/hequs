@@ -7,6 +7,7 @@ import { useColorScheme } from '@/components/useColorScheme';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { images } from '@/constants';
 import CustomButton from '@/components/CustomButton';
+import { Link } from 'expo-router';
 
 function App() {
   const colorScheme = useColorScheme();
@@ -46,7 +47,10 @@ function App() {
             </Text>
 
           </View>
-            <CustomButton/>
+          <Link href="/(tabs)/home" style={{ color: 'blue' }}>
+            Go to home
+          </Link>
+          <CustomButton />
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
