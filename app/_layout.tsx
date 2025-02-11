@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import 'react-native-reanimated';
 import { useColorScheme } from '@/components/useColorScheme';
+import { UserProvider } from '@/lib/userProvider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,12 +40,24 @@ const RootLayout = () => {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    <Stack>
-    <Stack.Screen name="index" options={{ headerShown:
-            false }} />
-    </Stack>
-  </ThemeProvider>
+    <UserProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{
+            headerShown:
+              false
+          }} />
+          <Stack.Screen name="(auth)" options={{
+            headerShown:
+              false
+          }} />
+          <Stack.Screen name="(tabs)" options={{
+            headerShown:
+              false
+          }} />
+        </Stack>
+      </ThemeProvider>
+    </UserProvider>
   )
 }
 
