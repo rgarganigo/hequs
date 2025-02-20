@@ -1,7 +1,7 @@
-import React from 'react'
-import { View, Image, Text } from 'react-native'
-import { Tabs, Redirect } from 'expo-router'
-import { icons } from '../../constants';
+import React from "react";
+import { View, Image, Text } from "react-native";
+import { Tabs, Redirect } from "expo-router";
+import { icons } from "../../constants";
 
 interface TabIconProps {
   icon: any;
@@ -19,13 +19,16 @@ const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
         tintColor={color}
         className="w-6 h-6"
       />
-      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs `} 
-      numberOfLines={1} style={{color: color, width: 50, textAlign: 'center'}}> 
-      {name}
+      <Text
+        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs `}
+        numberOfLines={1}
+        style={{ color: color, width: 50, textAlign: "center" }}
+      >
+        {name}
       </Text>
     </View>
-  )
-}
+  );
+};
 
 const TabsLayout = () => {
   return (
@@ -33,22 +36,22 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: '#FFA001',
-          tabBarInactiveTintColor: '#CDCDE0',
+          tabBarActiveTintColor: "#FFA001",
+          tabBarInactiveTintColor: "#CDCDE0",
           tabBarStyle: {
-            backgroundColor: '#161622',
+            backgroundColor: "#161622",
             borderTopWidth: 1,
-            borderTopColor: '#232533',
+            borderTopColor: "#232533",
             height: 85,
             paddingBottom: 10,
-            paddingTop: 10
-          }
+            paddingTop: 10,
+          },
         }}
       >
         <Tabs.Screen
           name="home"
           options={{
-            title: 'Home',
+            title: "Home",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
@@ -57,13 +60,13 @@ const TabsLayout = () => {
                 name="Home"
                 focused={focused}
               />
-            )
+            ),
           }}
         />
         <Tabs.Screen
           name="screenOne"
           options={{
-            title: 'Cheval',
+            title: "Cheval",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
@@ -72,13 +75,13 @@ const TabsLayout = () => {
                 name="Cheval"
                 focused={focused}
               />
-            )
+            ),
           }}
         />
         <Tabs.Screen
           name="screenTwo"
           options={{
-            title: 'Map',
+            title: "Map",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
@@ -87,13 +90,13 @@ const TabsLayout = () => {
                 name="Map"
                 focused={focused}
               />
-            )
+            ),
           }}
         />
         <Tabs.Screen
-          name="screenThree"
+          name="horsePage"
           options={{
-            title: 'Profile',
+            title: "Profile",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
@@ -102,12 +105,12 @@ const TabsLayout = () => {
                 name="Profile"
                 focused={focused}
               />
-            )
+            ),
           }}
         />
       </Tabs>
     </>
-  )
-}
+  );
+};
 
-export default TabsLayout
+export default TabsLayout;
