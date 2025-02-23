@@ -1,5 +1,11 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, Text, Animated, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Animated,
+  TouchableOpacity,
+} from "react-native";
 
 const ObstacleDemo = () => {
   const barYPosition = useRef(new Animated.Value(150)).current; // Position initiale de la barrière
@@ -22,9 +28,9 @@ const ObstacleDemo = () => {
         {/* Poteaux */}
         <View style={[styles.pole, { left: 50 }]} /> {/* Poteau gauche */}
         <View style={[styles.pole, { left: 330 }]} /> {/* Poteau droit */}
-
         {/* Barrière animée */}
         <Animated.View style={[styles.bar, { top: barYPosition }]} />
+        <Text></Text> {/* Ajout d'un Text vide pour éviter l'erreur */}
       </View>
 
       {/* Boutons pour ajuster la hauteur */}

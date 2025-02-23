@@ -66,20 +66,20 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="screenOne"
           options={{
-            title: "Cheval",
+            title: "Barre",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.home}
                 color={color}
-                name="Cheval"
+                name="Barre"
                 focused={focused}
               />
             ),
           }}
         />
         <Tabs.Screen
-          name="screenTwo"
+          name="map"
           options={{
             title: "Map",
             headerShown: false,
@@ -96,13 +96,13 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="horsePage"
           options={{
-            title: "Profile",
+            title: "Chevaux",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.profile}
                 color={color}
-                name="Profile"
+                name="Chevaux"
                 focused={focused}
               />
             ),

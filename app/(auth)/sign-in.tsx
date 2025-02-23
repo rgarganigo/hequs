@@ -27,8 +27,8 @@ const SignIn = () => {
   const { setUser, setIsLogged } = useUserContext();
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setform] = useState({
-    email: "",
-    password: "",
+    email: "cacahuetes.morais@gmail.com", // A CHANGER NOT SAFE
+    password: "passwordTest", // MDR
   });
 
   const submit = async () => {
