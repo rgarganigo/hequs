@@ -36,15 +36,15 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: "#FFA001",
-          tabBarInactiveTintColor: "#CDCDE0",
+          tabBarActiveTintColor: '#18181A', // Couleur active : Noir
+          tabBarInactiveTintColor: 'rgba(0, 0, 0, 0.5)', // Couleur inactive : Noir à 50%
           tabBarStyle: {
-            backgroundColor: "#161622",
-            borderTopWidth: 1,
-            borderTopColor: "#232533",
-            height: 85,
+            backgroundColor: '#FA8E61', // Fond orange
+            borderTopWidth: 0, // Supprime la bordure
+            height: 60, // Hauteur de la barre
             paddingBottom: 10,
             paddingTop: 10,
+            justifyContent: 'center',
           },
         }}
       >
@@ -85,7 +85,7 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.home}
+                icon={icons.plus}
                 color={color}
                 name="Map"
                 focused={focused}
