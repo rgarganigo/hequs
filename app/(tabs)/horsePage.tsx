@@ -4,6 +4,7 @@ import FormField from "@/components/FormField";
 import { supabase } from "@/lib/supabase";
 import CustomButton from "@/components/CustomButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import HorseCarousel from "@/components/HorseCaroussel";
 
 const AddHorseForm = () => {
   const [form, setform] = useState({
@@ -103,6 +104,7 @@ const AddHorseForm = () => {
               containerStyles="w-full mt-7"
               isLoading={isSubmitting}
             />
+            <HorseCarousel />
           </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
