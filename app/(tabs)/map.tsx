@@ -1,7 +1,7 @@
-import React from 'react';
-import { MapView } from '../../components/Map/MapView';
-import { useMap } from '../../components/Map/useMap';
-import { addObstacle } from '../../components/Obstacle/useObstacle';
+import React from "react";
+import { MapView } from "../../components/Map/MapView";
+import { useMap } from "../../components/Map/useMap";
+import { addObstacle } from "../../components/Obstacle/useObstacle";
 
 export default function MapScreen() {
   const { location, markers, handleMapPress } = useMap();
@@ -22,6 +22,7 @@ export default function MapScreen() {
           color: "Inconnu",
           type: "Standard",
           id_user: 1, // Associez dynamiquement l'utilisateur ici
+          id_obstacle: null, // Assign a default value or generate an ID if necessary
           latitude: marker.latitude,
           longitude: marker.longitude,
         };

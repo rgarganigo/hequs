@@ -1,7 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import MaskedView from "@react-native-masked-view/masked-view";
 
 const Home = () => {
   return (
@@ -14,23 +12,6 @@ const Home = () => {
           style={styles.iconLeft}
         />
 
-        {/* Texte avec dégradé */}
-        <View style={styles.textWrapper}>
-          <MaskedView
-            style={styles.maskedView}
-            maskElement={
-              <Text style={styles.text}>Accueil</Text> // Texte utilisé comme masque
-            }
-          >
-            <LinearGradient
-              colors={["#FA8E61", "#FBBF24"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={styles.gradient}
-            />
-          </MaskedView>
-        </View>
-
         {/* Icône Menu Obstacle à droite */}
         <Image
           source={require("../../assets/icons/menu_obstacle.png")} // Icône Menu Obstacle
@@ -38,14 +19,14 @@ const Home = () => {
         />
       </View>
 
-        {/* Titre et bouton d'action */}
+      {/* Titre et bouton d'action */}
       <View style={styles.headerObstacle}>
-          <Text style={styles.obstacleTitle}>Mes obstacles</Text>
-          <Image
-            source={require("../../assets/icons/plus_icon.png")} // Icône pour ajouter un obstacle
-            style={styles.addIcon}
-          />
-        </View>
+        <Text style={styles.obstacleTitle}>Mes obstacles</Text>
+        <Image
+          source={require("../../assets/icons/plus_icon.png")} // Icône pour ajouter un obstacle
+          style={styles.addIcon}
+        />
+      </View>
 
       {/* Container Mes Obstacles */}
       <View style={styles.rowObstacle}>

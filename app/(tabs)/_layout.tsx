@@ -36,15 +36,15 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: '#18181A', // Couleur active : Noir
-          tabBarInactiveTintColor: 'rgba(0, 0, 0, 0.5)', // Couleur inactive : Noir à 50%
+          tabBarActiveTintColor: "#18181A", // Couleur active : Noir
+          tabBarInactiveTintColor: "rgba(0, 0, 0, 0.5)", // Couleur inactive : Noir à 50%
           tabBarStyle: {
-            backgroundColor: '#FA8E61', // Fond orange
+            backgroundColor: "#FA8E61", // Fond orange
             borderTopWidth: 0, // Supprime la bordure
             height: 60, // Hauteur de la barre
             paddingBottom: 10,
             paddingTop: 10,
-            justifyContent: 'center',
+            justifyContent: "center",
           },
         }}
       >
