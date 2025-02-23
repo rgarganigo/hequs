@@ -82,7 +82,7 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.home}
+                icon={icons.plus}
                 color={color}
                 name="Map"
                 focused={focused}
